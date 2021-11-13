@@ -38,3 +38,8 @@ As a team of creatives, we set out to build a platform that would find a home in
 - **Type:** POST
 - **Return:** JSON
 - Returns list of users' favorited photos in JSON format.
+
+#### Retrieve user authentication from Microsoft Identity Express
+- **Use Case:** User tries to login to his/her personal account to access their "favorites" lists.
+- **Type:** GET/POST
+- **Return:** Personalized Session Token
