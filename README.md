@@ -2,7 +2,7 @@
 
 ## Project Description
 
-As a team of creatives, we set out to build a platform that would find a home in our own daily workflows. We identified a time-consuming task common to us all: finding royalty-free stock images. Services such as Adobe Stock Images provide a paid solution that the majority of amateurs can’t afford, and services such as Unsplash and Pexel aim to fill the void by providing royalty-free stock images at no cost but fall short in their limited selection. Oftentimes, this forces creatives to waste valuable time switching from site to site looking for their desired image, leaving behind a wake of disorganization. Our group looks to make a once-tedious process simple by aggregating images from popular no-cost royalty free stock image sites and providing a hub for users to save or download image collections.
+As a team of creatives, we set out to build a platform that would find a home in our own daily workflows. We identified a time-consuming task common to us all: finding royalty-free stock images. Services such as Adobe Stock Images provide a paid solution that the majority of amateurs can’t afford, and services such as Unsplash and Pexel aim to fill the void by providing royalty-free stock images at no cost but fall short in their limited selection. Oftentimes, this forces other creatives like us to waste valuable time switching from site to site looking for their desired image, leaving behind a wake of disorganization. Our group looks to make a once-tedious process simple by aggregating images from popular no-cost royalty free stock image sites and providing a hub for users to save or download image collections.
 
 ## Technical Description
 
@@ -38,3 +38,8 @@ As a team of creatives, we set out to build a platform that would find a home in
 - **Type:** POST
 - **Return:** JSON
 - Returns list of users' favorited photos in JSON format.
+
+#### Retrieve user authentication from Microsoft Identity Express
+- **Use Case:** User tries to login to his/her personal account to access their "favorites" lists.
+- **Type:** GET/POST
+- **Return:** Personalized Session Token
