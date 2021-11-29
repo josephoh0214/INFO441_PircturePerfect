@@ -27,17 +27,113 @@ As a team of creatives, we set out to build a platform that would find a home in
 - **Return:** JSON
 - Returns list of photos in JSON format based on search parameters including link.
 
-#### Favorite photo(s)
-- **Use Case:** User favorites photo(s) they like to their account.
+#### Register/login
+- **Use Case:** User registers or logs in with a username and receives a JSON response and creates a logged in session.
 - **Type:** POST
-- **Return:** Plain Text
-- Returns text on whether or not the photo(s) were successfully saved to the user's account.
-
-#### Retrieve favorited photo(s)
-- **Use Case:** User retrieves photo(s) they have favorited to the their account.
-- **Type:** POST
+- **Endpoint:** /users
+- **Parameters:** Body parameter of `username`.
 - **Return:** JSON
-- Returns list of users' favorited photos in JSON format.
+- **Example Request:** <br>
+URL: /users <br>
+Body:
+```json
+{
+    "username": "uwstudent"  
+}
+```
+- **Example Response:** <br>
+```json
+{
+    "status": "success"  
+}
+```
+- **Error Handling:**
+  - **400:** Missing username
+  - **500:** Server Error
+  - **200:** If user is already logged in with response:
+  ```json
+  {
+      "status": "already logged in"
+  }
+  ```
+
+#### Log out
+- **Use Case:** User logs out of their account if they are logged in, destroying any existing log in sessions.
+- **Type:** GET
+- **Endpoint:** /users/logout
+- **Parameters:** None
+- **Return:** Plain text
+- **Example Response:** "logged out"
+
+#### Favorite image
+- **Use Case:** Favorites an image to a user's account if they are logged in.
+- **Type:** POST
+- **Endpoint:** /users/favorites
+- **Parameters:** Body parameters of `name` and `url`
+- **Return:** JSON
+- **Example Request:** <br>
+Body:
+```json
+{
+    "name": "square",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png"  
+}
+```
+- **Example Response:**
+```json
+{
+  "status": "success"  
+}
+```
+- **Error Handling:**
+  - **400:** Not logged in or missing parameters
+  - **500:** Server Error
+
+#### Retrieve favorited images
+- **Use Case:** Retrieves a user's favorited images if they are logged in.
+- **Type:** GET
+- **Endpoint:** /users/favorites
+- **Parameters:** None
+- **Return:** JSON
+- **Example Response:**
+```json
+{
+    "favorites": [
+        {
+            "name": "circle",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
+            "date": "2021-11-29T04:07:22.779Z",
+            "_id": "61a451fa94404fac6c881fd3"
+        },
+        {
+            "name": "square",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
+            "date": "2021-11-29T04:35:26.541Z",
+            "_id": "61a4588eb3a100b54680d559"
+        }
+    ]
+}
+```
+- **Error Handling:**
+  - **400:** Not logged
+  - **500:** Server Error
+
+#### Remove favorited image
+- **Use Case:** Removes an image based on name and url from a user's favorited images if they are logged in.
+- **Type:** DELETE
+- **Endpoint:** /users/favorites
+- **Parameters:** Query parameters of `name` and `url`
+- **Return:** JSON
+- **Example Request:** /users/favorites?name=square&url=https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png
+- **Example Response:**
+```json
+{
+  "status": "success"  
+}
+```
+- **Error Handling:**
+  - **400:** Not logged or missing parameters
+  - **500:** Server Error
 
 #### Retrieve user authentication from Microsoft Identity Express
 - **Use Case:** User tries to login to his/her personal account to access their "favorites" lists.
