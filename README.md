@@ -139,3 +139,38 @@ Body:
 - **Use Case:** User tries to login to his/her personal account to access their "favorites" lists.
 - **Type:** GET/POST
 - **Return:** Personalized Session Token
+
+### Database Schema
+
+#### Users
+
+|Name|Type|Description|
+|---|---|---|
+|username|String|Username of user|
+|favorites|Array(Image)|List of favorited images|
+
+#### Image
+
+|Name|Type|Description|
+|---|---|---|
+|name|String|Image name|
+|url|String|Image url|
+|date|Date|Date of when the image was favorited|
+
+#### Example
+
+```json
+  username: "uwstudent"
+  favorites: [
+    {
+      "name": "circle",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
+      "date": "2021-11-29T04:07:22.779Z"
+    },
+    {
+      "name": "square",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
+      "date": "2021-11-29T04:35:26.541Z"
+    }
+  ]
+```
