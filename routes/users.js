@@ -36,7 +36,8 @@ async function main() {
  */
 router.post('/', async function(req, res, next) {
   const session = req.session;
-  const username = req.body.username;
+  const accountUsername = session.account ? session.account.username : undefined;
+  const username = accountUsername ? accountUsername : req.body.username;
 
   console.log("Username:", username);
   if (!username) {
@@ -44,7 +45,7 @@ router.post('/', async function(req, res, next) {
     return;
   }
 
-  if (!session.isAuthenticated && !session.username) {
+  if (!session.username) {
     try {
       const user = await User.findOne({username: username});
       if (!user) {
@@ -63,6 +64,23 @@ router.post('/', async function(req, res, next) {
   } else {
     res.json({status: "already logged in"});
   }
+});
+
+router.get('/getIdentity', (req, res) => {
+  const session = req.session;
+  let resp = {};
+  if (session.isAuthenticated) {
+    resp.status = "loggedin";
+    const userInfo = {
+      name: session.account.name,
+      username: session.account.username
+    }
+    resp.userInfo = userInfo;
+  } else {
+    resp.status = "loggedout";
+    res.status(401);
+  }
+  res.json(resp);
 });
 
 router.post('/favorites', async function(req, res, next) {

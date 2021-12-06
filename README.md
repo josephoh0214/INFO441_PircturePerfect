@@ -4,6 +4,8 @@
 
 As a team of creatives, we set out to build a platform that would find a home in our own daily workflows. We identified a time-consuming task common to us all: finding royalty-free stock images. Services such as Adobe Stock Images provide a paid solution that the majority of amateurs can’t afford, and services such as Unsplash and Pexel aim to fill the void by providing royalty-free stock images at no cost but fall short in their limited selection. Oftentimes, this forces other creatives like us to waste valuable time switching from site to site looking for their desired image, leaving behind a wake of disorganization. Our group looks to make a once-tedious process simple by aggregating images from popular no-cost royalty free stock image sites and providing a hub for users to save or download image collections.
 
+https://picture-perfect.bta167.me/
+
 ## Technical Description
 
 ### Architecture Diagram
@@ -28,10 +30,10 @@ As a team of creatives, we set out to build a platform that would find a home in
 - Returns list of photos in JSON format based on search parameters including link.
 
 #### Register/login
-- **Use Case:** User registers or logs in with a username and receives a JSON response and creates a logged in session.
+- **Use Case:** User registers or logs in with a username and receives a JSON response and creates a logged in session. Uses any existing account username if available or the body parameter of `username`.
 - **Type:** POST
 - **Endpoint:** /users
-- **Parameters:** Body parameter of `username`.
+- **Parameters:** Body parameter of `username` (required if user is not signed in through Microsoft).
 - **Return:** JSON
 - **Example Request:** <br>
 URL: /users <br>
