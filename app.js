@@ -5,7 +5,7 @@ import logger from 'morgan';
 import sessions from 'express-session';
 
 import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
+import apiRouter from './routes/api/v1/apiv1.js';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -31,6 +31,6 @@ app.use(sessions({
 }));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/v1', apiRouter);
 
 export default app;
