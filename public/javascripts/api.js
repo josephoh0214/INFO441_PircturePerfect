@@ -6,8 +6,8 @@ async function getImagesApi(query){
         let unsplashImages = await unsplashResponse.json();
         let pexelResponse = await fetch(`api/${apiVersion}/imagesPexel?term=${query}`);
         let pexelImages = await pexelResponse.json();
-        let responseJson = await response.json();
-        return responseJson;
+        console.log(unsplashImages.concat(pexelImages));
+        return unsplashImages.concat(pexelImages);
     }catch(error){
         return {
             status: "error",
