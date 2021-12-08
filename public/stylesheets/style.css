@@ -1,8 +1,74 @@
-body {
-  padding: 50px;
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  /* background-image: url("../../imgs/background.jpeg"); */
+  background-image: url("https://www.visittheusa.com/sites/default/files/styles/hero_l/public/images/hero_media_image/2017-10/74929f9d07a4341f9326f659257d936a.jpeg?h=48d516a6&itok=N47WS3dp");
+  background-size: cover;
+  padding-bottom: 200px;
+  color: white;
+  padding-right: 10px;
+  padding-left: 20px;
+  padding-top: 10px;
+  font-family: 'Patua One', cursive;
+}
+
+main {
+  padding: 20px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.main_container {
+  padding: 125px;
 }
 
 a {
   color: #00B7FF;
+}
+
+h1 {
+  font-family: 'Patua One', cursive;
+}
+
+nav {
+  background-color: none;
+}
+
+#identity_div {
+  background-color: none;
+}
+
+p {
+  margin-left: none;
+}
+
+h2 {
+  display: inline-block;
+  margin-bottom: 50px;
+  font-family: 'Patua One', cursive;
+}
+
+/* button styling */
+
+#search_btn {
+  width: auto;
+  padding: 5px;
+  background: #2196F3;
+  color: white;
+  font-size: 15px;
+  border: 1px solid grey;
+  cursor: pointer;
+  margin-left: none;
+}
+
+#favorites_btn {
+  background: none;
+  font-size: 21px;
+  border: none;
+}
+
+button:hover {
+  background: #0b7dda;
 }

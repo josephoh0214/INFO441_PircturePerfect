@@ -31,8 +31,8 @@ const appSettings = {
     clientSecret: "ZH17Q~mcYy1RhFjE5AYNvyAtH3SQUa_yADrrg",
   },
   authRoutes: {
-    redirect: "https://picture-perfect.bta167.me/", // deployed redirect url
-    // redirect: "/redirect", // localhost redirect url
+    // redirect: "https://picture-perfect.bta167.me/", // deployed redirect url
+    redirect: "/redirect", // localhost redirect url
     error: "/error",
     unauthorized: "/unauthorized",
   }
