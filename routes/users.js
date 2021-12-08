@@ -86,7 +86,7 @@ router.get('/getIdentity', (req, res) => {
 router.post('/favorites', async function(req, res, next) {
   const session = req.session;
   if (session.username) {
-    if (!req.body.url || !req.body.name) {
+    if (!req.body.url) {
       res.status(400).json({status: "missing image info"});
       return;
     }
@@ -94,11 +94,10 @@ router.post('/favorites', async function(req, res, next) {
     try {
       const user = await User.findOne({username: session.username});
       const image = {
-        name: req.body.name,
         url: req.body.url,
         date: new Date().toJSON(),
       };
-      if (user.favorites.filter(image => image.name === req.body.name && image.url === req.body.url) == 0) {
+      if (user.favorites.filter(image => image.url === req.body.url) == 0) {
         user.favorites.push(image);
       }
       const response = await user.save();

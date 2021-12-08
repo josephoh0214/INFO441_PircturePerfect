@@ -71,20 +71,19 @@ Body:
 - **Use Case:** Favorites an image to a user's account if they are logged in.
 - **Type:** POST
 - **Endpoint:** /users/favorites
-- **Parameters:** Body parameters of `name` and `url`
+- **Parameters:** Body parameter of `url`
 - **Return:** JSON
 - **Example Request:** <br>
 Body:
 ```json
 {
-    "name": "square",
     "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png"  
 }
 ```
 - **Example Response:**
 ```json
 {
-  "status": "success"  
+  "status": "success"
 }
 ```
 - **Error Handling:**
