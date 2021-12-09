@@ -19,7 +19,9 @@ async function main() {
     username: String,
     favorites: [
       {
-        name: String,
+        id: String,
+        downloadLink: String,
+        preview: String,
         url: String,
         date: { type: Date, default: Date.now },
       }
@@ -86,7 +88,11 @@ router.get('/getIdentity', (req, res) => {
 router.post('/favorites', async function(req, res, next) {
   const session = req.session;
   if (session.username) {
-    if (!req.body.url) {
+    const id = req.body.id;
+    const downloadLink = req.body.downloadLink;
+    const preview = req.body.preview;
+    const url = req.body.url;
+    if (!id || !downloadLink || !preview) {
       res.status(400).json({status: "missing image info"});
       return;
     }
@@ -94,10 +100,13 @@ router.post('/favorites', async function(req, res, next) {
     try {
       const user = await User.findOne({username: session.username});
       const image = {
-        url: req.body.url,
+        id: id,
+        downloadLink: downloadLink,
+        preview: preview,
+        url: url,
         date: new Date().toJSON(),
       };
-      if (user.favorites.filter(image => image.url === req.body.url) == 0) {
+      if (user.favorites.filter(image => image.id === id) == 0) {
         user.favorites.push(image);
       }
       const response = await user.save();
@@ -114,7 +123,8 @@ router.post('/favorites', async function(req, res, next) {
 router.delete('/favorites', async function(req, res, next) {
   const session = req.session;
   if (session.username) {
-    if (!req.query.name || !req.query.url) {
+    const id = req.query.id;
+    if (!id) {
       res.status(400).json({status: "missing image info"});
       return;
     }
@@ -122,7 +132,7 @@ router.delete('/favorites', async function(req, res, next) {
     try {
       const user = await User.findOne({username: session.username});
       let favorites = user.favorites;
-      user.favorites = favorites.filter(image => image.name !== req.query.name || image.url !== req.query.url);
+      user.favorites = favorites.filter(image => image.id !== id);
       const response = await user.save();
       res.json({status: "success"});
     } catch(e) {

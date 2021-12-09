@@ -29,7 +29,7 @@ router.get('/imagesUnsplash', async function(req, res, next) {
             newEntry['url'] = photo.links.html;
             newEntry['preview'] = photo.urls.regular;
             result.push(newEntry);
-        } 
+        }
         res.send(result);
     } catch (error) {
         res.setHeader('Content-Type', 'application/json');

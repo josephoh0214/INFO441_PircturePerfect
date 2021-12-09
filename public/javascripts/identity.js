@@ -30,4 +30,5 @@ async function loadIdentity(){
         identity_div.innerHTML = `
         <a href="signin" class="btn btn-primary" role="button">Log in</a>`;
     }
+    loadFavorites();
 }

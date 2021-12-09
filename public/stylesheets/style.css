@@ -49,14 +49,21 @@ h2 {
   font-family: 'Patua One', cursive;
 }
 
+#search_results {
+  margin-bottom: 100px;
+}
+
+.image_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
 img {
   width: 300px;
   height: 300px;
-  margin: 10px;
-}
-
-#search_results {
-  margin-bottom: 100px;
+  /* margin: 10px; */
 }
 
 /* button styling */
@@ -76,6 +83,10 @@ img {
   background: none;
   font-size: 21px;
   border: none;
+}
+
+.empty_star {
+  background-image: "&#9734;";
 }
 
 button:hover {

@@ -64,3 +64,48 @@ async function favoritesApi() {
   }
 }
 
+async function favoriteImageApi(imageInfo) {
+  try {
+      let response = await fetch(`/users/favorites`,
+        {
+            method: "POST",
+            body: JSON.stringify({
+              id: imageInfo.id,
+              downloadLink: imageInfo.downloadLink,
+              preview: imageInfo.preview,
+              url: imageInfo.url
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    );
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+      return {
+          status: "error",
+          error: "There was an error: " + error
+      };
+  }
+}
+
+async function unfavoriteImageApi(imageInfo) {
+  try {
+      let response = await fetch(`/users/favorites?id=${imageInfo.id}`,
+        {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    );
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+      return {
+          status: "error",
+          error: "There was an error: " + error
+      };
+  }
+}
