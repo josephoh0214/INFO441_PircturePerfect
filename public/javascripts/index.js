@@ -32,7 +32,7 @@ const createCardElement = (imageInfo) => {
   let container = document.createElement("div");
   container.classList.add("m-2", "p-2", "border", "border-dark", "rounded");
   container.innerHTML = `
-    <a href="${imageInfo.url}"><img src="${imageInfo.preview}"></img></a>
+    <a href="${imageInfo.url}" target="_blank" rel="noopener noreferrer"><img src="${imageInfo.preview}"></img></a>
     <hr>
   `;
   let favoritesBtn = document.createElement("btn");
