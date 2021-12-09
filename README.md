@@ -71,13 +71,16 @@ Body:
 - **Use Case:** Favorites an image to a user's account if they are logged in.
 - **Type:** POST
 - **Endpoint:** /users/favorites
-- **Parameters:** Body parameter of `url`
+- **Parameters:** Body parameters of `id`, `downloadLink`, `preview`, and `url`.
 - **Return:** JSON
 - **Example Request:** <br>
 Body:
 ```json
 {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png"  
+  "id": "123152pexel",
+  "downloadLink": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
+  "preview": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
 }
 ```
 - **Example Response:**
@@ -99,20 +102,22 @@ Body:
 - **Example Response:**
 ```json
 {
-    "favorites": [
-        {
-            "name": "circle",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
-            "date": "2021-11-29T04:07:22.779Z",
-            "_id": "61a451fa94404fac6c881fd3"
-        },
-        {
-            "name": "square",
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
-            "date": "2021-11-29T04:35:26.541Z",
-            "_id": "61a4588eb3a100b54680d559"
-        }
-    ]
+  "favorites": [
+    {
+      "id": "123152pexel",
+      "downloadLink": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
+      "preview": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
+      "date": "2021-11-29T04:07:22.779Z"
+    },
+    {
+      "id": "1241232131unsplash",
+      "downloadLink": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
+      "preview": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
+      "date": "2021-11-29T04:35:26.541Z"
+    }
+  ]
 }
 ```
 - **Error Handling:**
@@ -120,12 +125,12 @@ Body:
   - **500:** Server Error
 
 #### Remove favorited image
-- **Use Case:** Removes an image based on name and url from a user's favorited images if they are logged in.
+- **Use Case:** Removes an image based on id from a user's favorited images if they are logged in.
 - **Type:** DELETE
 - **Endpoint:** /users/favorites
-- **Parameters:** Query parameters of `name` and `url`
+- **Parameters:** Query parameter of `id`.
 - **Return:** JSON
-- **Example Request:** /users/favorites?name=square&url=https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png
+- **Example Request:** /users/favorites?id=1231231pexel
 - **Example Response:**
 ```json
 {
@@ -154,24 +159,32 @@ Body:
 
 |Name|Type|Description|
 |---|---|---|
-|name|String|Image name|
+|id|String|Image id|
+|downloadLink|String|Image download link|
+|preview|String|Image preview link|
 |url|String|Image url|
 |date|Date|Date of when the image was favorited|
 
 #### Example
 
 ```json
-  username: "uwstudent"
-  favorites: [
+{
+  "username": "uwstudent",
+  "favorites": [
     {
-      "name": "circle",
+      "id": "123152pexel",
+      "downloadLink": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
+      "preview": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
       "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Circle_-_black_simple.svg/640px-Circle_-_black_simple.svg.png",
       "date": "2021-11-29T04:07:22.779Z"
     },
     {
-      "name": "square",
+      "id": "1241232131unsplash",
+      "downloadLink": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
+      "preview": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
       "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Square_-_black_simple.svg/1200px-Square_-_black_simple.svg.png",
       "date": "2021-11-29T04:35:26.541Z"
     }
   ]
+}
 ```
