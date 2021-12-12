@@ -41,7 +41,6 @@ router.post('/', async function(req, res, next) {
   const accountUsername = session.account ? session.account.username : undefined;
   const username = accountUsername ? accountUsername : req.body.username;
 
-  console.log("Username:", username);
   if (!username) {
     res.status(400).json({status: "missing username"});
     return;

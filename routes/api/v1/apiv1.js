@@ -49,7 +49,6 @@ router.get('/imagesPexel', async function (req, res, next) {
     for (const photo of response.photos) {
         let newEntry = {};
         newEntry['id'] = photo.id + 'pexel';
-        //download link here needs to be fixed
         newEntry['downloadLink'] = photo.url;
         newEntry['url'] = photo.url;
         newEntry['preview'] = photo.src.original;
